@@ -31,13 +31,17 @@ func mainHandler(w http.ResponseWriter, r *http.Request) {
 
 	switch r.Method {
 	case "GET":
-		templates.ExecuteTemplate(w, "main.html", &Page{Title: "Search for any item"})
+		templates.ExecuteTemplate(w, "main.html", &Page{})
 	case "POST":
 		if err := r.ParseForm(); err != nil {
 			fmt.Println(err)
 			return
 		}
 		item := r.FormValue("item")
+
+		// Sanitize input
+		title := strings.Title(item)
+		item = strings.Replace(item, " ", "_", -1)
 
 		image, err := searchItem(item, r.UserAgent())
 		if err != nil {
@@ -63,7 +67,7 @@ func mainHandler(w http.ResponseWriter, r *http.Request) {
 			sb.WriteString("\n")
 		}
 
-		templates.ExecuteTemplate(w, "main.html", &Page{Title: item, Text: sb.String()})
+		templates.ExecuteTemplate(w, "main.html", &Page{Title: title, Text: sb.String()})
 
 	}
 
