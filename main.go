@@ -26,6 +26,7 @@ type Page struct {
 	Text  string
 }
 
+// handler for main.html
 func mainHandler(w http.ResponseWriter, r *http.Request) {
 
 	switch r.Method {
