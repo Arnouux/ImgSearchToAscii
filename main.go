@@ -17,7 +17,7 @@ import (
 	"github.com/nfnt/resize"
 )
 
-var templates = template.Must(template.ParseFiles("main.html"))
+var templates = template.Must(template.ParseFiles("web/html/main.html"))
 var levels = []string{" ", "░", "▒", "▓", "█"}
 
 type Page struct {
@@ -126,6 +126,8 @@ func searchItem(item string, userAgent string) (image.Image, error) {
 }
 
 func main() {
+
+	http.Handle("/web/css/", http.StripPrefix("/web/css/", http.FileServer(http.Dir("web/css"))))
 
 	http.HandleFunc("/main/", mainHandler)
 	log.Fatal(http.ListenAndServe(":8080", nil))
