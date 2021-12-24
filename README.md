@@ -13,4 +13,5 @@ go to http://localhost:8080/main/
 - [x] randomization
 - [ ] let user choose prefered size
 - [ ] adjust textarea size
+- [ ] better resize
 - [ ] better ascii
