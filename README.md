@@ -1,8 +1,8 @@
-# Image to ascii web app written in golang
+# Image to ascii web app (Golang)
 
 Searches for an image matching the user's input and renders as an ascii text.
 
-### How to
+### How to:
 
 type `go run main.go`
 
